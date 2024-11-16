@@ -17,18 +17,11 @@
 #include <cmath> // Подключение библиотеки для математических операций
 using namespace std; // Использование пространства имен std
 
-// debug (не входит в остновную программу только для проверки)
-void debug(int n, float arg, float sum, float tsum, float eps) {
-    cout << "N = " << n << endl;
-    cout << "Sum = " << sum << " + " << arg << " = " << sum + arg << endl;
-    cout << "Diff = " << tsum << " - " << sum << " = " << tsum - sum << endl; 
-    cout << "Diff >= " << eps << " = " << bool((tsum - sum) >= eps) << endl;
-    cout << "\n";
-}
 
 int main() {
     setlocale(LC_ALL, "RUSSIAN");// Установка локализации для корректного вывода на русском языке
 
+    
     float sum = 0; // Переменная для текущей суммы
     float diff = 1; // Переменная для разности между точной и вычисленной суммой
     float eps = 0; // Переменная для точности (эпсилон)
@@ -46,12 +39,15 @@ int main() {
 
     while (diff >= eps) {                               // Цикл для вычисления суммы, пока разность превышает eps
         n += 1;                                         // Увеличение счетчика элементов на 1
+        cout << "N = " << n << endl;
         arg = 1 / ((2 * n - 1.0) * (2 * n - 1.0));      // Вычисление текущего слагаемого ряда
-        
-        debug(n, arg, sum, tsum, eps);                  // Вызов функции debug для вывода текущих значений
-
+        cout << "Sum = " << sum << " + " << arg << " = " << sum + arg << endl;
         sum += arg;                                     // Добавление текущего слагаемого к общей сумме
-        diff = abs(tsum - sum);                         // Обновление разности между точной и вычисленной суммой
+        cout << "Diff = " << tsum << " - " << sum << " = " << abs(tsum - sum) << endl; 
+        cout << "Diff >= " << eps << " = " << bool((tsum - sum) >= eps) << endl;
+        diff = abs(tsum - sum);                         // Обновление разности между точной и вычисленной суммой        
+        cout << "\n";
+
     }
 
     // Вывод результатов после завершения цикла
